@@ -68,6 +68,7 @@ table 50128 Employee1
     
     trigger OnInsert()
     begin
+        Status := true;
         if "Joining Date" = 0D then
             "Joining Date" := Today();
     end;
@@ -75,8 +76,10 @@ table 50128 Employee1
     
     trigger OnDelete()
     begin
-        if Status then
+        if Status = true then
             Error('Active Employee cannot be deleted.');
+        else
+            Message('Employee deleted successfully');
     end;
     
     
