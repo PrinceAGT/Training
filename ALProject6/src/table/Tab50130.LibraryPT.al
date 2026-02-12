@@ -24,7 +24,7 @@ table 50130 LibraryPT
             Error('BookID cannot end with zero');
 
                 if ("BookID" mod 1111 = 0) then 
-            Error('Special BookID entered');
+            Message('Special BookID entered');
 
             end;
             
