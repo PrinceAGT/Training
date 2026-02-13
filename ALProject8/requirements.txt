@@ -1,0 +1,4 @@
+Create a custom table and page called:- Trainee Item Entry
+Fields should be:- Item No., Item Name, Quantity, Unit Price, Amount, Tax Applied, Total Amount.
+Use TableRelation to connect your table with the standard Item table.
+Also Explore and try to Implement field triggers to auto-fill. :-When Item No. is selected->  Automatically fetch: Item Description → store in Item Name.
