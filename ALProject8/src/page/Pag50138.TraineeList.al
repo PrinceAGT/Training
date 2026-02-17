@@ -17,7 +17,7 @@ page 50138 TraineeList
                 {
                    ApplicationArea = All; 
                 }
-                field("Item Name";Rec."Item Name")
+                field("Item Description";Rec."Item Description")
                 {
                    ApplicationArea = All; 
                 }

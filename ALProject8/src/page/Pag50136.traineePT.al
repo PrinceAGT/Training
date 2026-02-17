@@ -15,7 +15,7 @@ page 50133 "traineePT card"
                 {
                     ApplicationArea = ALL;
                 }
-                field("Item Name";Rec."Item Name")
+                field("Item Description";Rec."Item Description")
                 {
                     ApplicationArea = ALL;
                 }

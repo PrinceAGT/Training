@@ -31,6 +31,16 @@ table 50135 DepartmentPT
             FieldClass = FlowField;
             CalcFormula = min(EmpPT.Salary where("Dept Code" = field("Dept Code")));
         }
+        field(7; "FirstEmpSalary"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = lookup(EmpPT.Salary where("Dept Code" = field("Dept Code")));
+        }
+        field(8; "HasEmployees"; Boolean)
+        {
+            FieldClass = FlowField;
+            CalcFormula = exist(EmpPT where("Dept Code" = field("Dept Code")));
+        }
     }
 
     keys

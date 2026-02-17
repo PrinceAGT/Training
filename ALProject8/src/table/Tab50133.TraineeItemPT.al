@@ -7,12 +7,22 @@ table 50133 TraineeItemPT
     {
         field(1;"Item No"; Integer)
         {
-            DataClassification = ToBeClassified;
+            
             Caption = 'Item No';
             TableRelation = Item."No."; 
-            
+            trigger OnValidate()
+            var
+                itemRec: Record Item;
+            begin
+                if itemRec.get("Item No") then begin
+                    "Item Description" := itemRec.Description;
+                    Quantity := itemRec."Reserved Qty. on Inventory";
+                    "Unit Price" := itemRec."Unit Price";
+                end;
+            end;
+           
         }
-        field(2; "Item Name"; Text[20])
+        field(2; "Item Description"; Text[20])
         {
             DataClassification = ToBeClassified;
             Caption = 'Item Name';
@@ -21,6 +31,12 @@ table 50133 TraineeItemPT
         {
             DataClassification = ToBeClassified;
             Caption = 'Quantity';
+            trigger OnValidate()
+            begin
+                Amount := Quantity * "Unit Price";
+                "Tax Applied" := 0.05*"Unit Price"*Quantity;
+                "Total Amount" := Amount + "Tax Applied";
+            end;
         }
         field(4; "Unit Price"; Integer)
         {

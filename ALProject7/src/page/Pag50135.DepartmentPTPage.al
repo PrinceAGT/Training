@@ -35,6 +35,15 @@ page 50135 DepartmentPTPage
                 {
                     Caption = 'MinSalary';
                 }
+                field(FirstEmpSalary;Rec.FirstEmpSalary)
+                {
+                    Caption = 'FirstEmpSalary';
+                }
+                field(HasEmployees;Rec.HasEmployees)
+                {
+                    Caption = 'HasEmployee?';
+                }
+
             }
         }
     }   
