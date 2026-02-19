@@ -9,7 +9,7 @@ table 50133 TraineeItemPT
         {
             
             Caption = 'Item No';
-            TableRelation = Item."No."; 
+            TableRelation = Item."No."WHERE(Type = CONST(Inventory),Blocked = CONST(false),"Unit Price" = FILTER(>30));
             trigger OnValidate()
             var
                 itemRec: Record Item;
