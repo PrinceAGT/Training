@@ -1,0 +1,19 @@
+"Create a Campus and Student data model and a Student Card page. Student.CampusId must use TableRelation = ""Campus"".""CampusId"". Implement a page level OnLookup on the CampusId field that:
+•	Shows only campuses with IsActive = true and City = Student.City; if Student.City is blank, show all active campuses.
+•	Lets the user pick a campus and assigns CampusId to the student.
+•	Validates capacity before assignment and blocks selection when CurrentEnrollment >= Capacity, showing a clear message.
+•	Re checks capacity immediately before final assignment to avoid race conditions.
+Table fields to create
+Campus table
+•	CampusId — Code[20] (Primary Key)
+•	Name — Text[100]
+•	City — Text[50]
+•	IsActive — Boolean
+•	Capacity — Integer
+•	CurrentEnrollment — Integer
+Student table
+•	StudentId — Code[20] (Primary Key)
+•	FirstName — Text[50]
+•	LastName — Text[50]
+•	City — Text[50]
+•	CampusId — Code[20] with TableRelation = ""Campus"".""CampusId"""
