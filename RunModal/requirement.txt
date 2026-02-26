@@ -1,0 +1,23 @@
+1.  Create table Project
+-Project No.
+-Project Name
+Create Project List Page
+Create another table Employee
+-Employee No.
+-Employee Name
+-Project No.
+-Project Name
+In Employee Card page → in Project No. field should lookup to 
+Project List page. 
+and assign 
+Project No and Project Name from there. 
+
+2. Add and action on Employee Card and simply open Project list 
+without assigning any field.
+
+3. OnVaidation -> open Currentpage whereever you are for example :- project list page. 
+and put a message and this is current page in view mode.
+
+4. Try Different Return Actin:- like looukupOK, OK, None, Cancel and see how they work different also Explore. 
+
+5. Explore more about Page.Runmodel , Page.run, Currpage.Run, Curr.page.update, curr.page.close. 
