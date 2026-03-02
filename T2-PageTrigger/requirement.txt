@@ -1,0 +1,16 @@
+Create table: Service Assignment
+Fields:
+Assignment No. (Code[20], PK)
+Customer Name (Text[100])
+Service Cost (Decimal)
+Status (Option: Open, Released, Completed)
+Assignment Date (Date)
+Create: Card Page, List Page. 
+
+page 
+a.When user opens Service Assignment List page: Automatically filter records where Status = Open and Show a Message.
+b. When user navigates between records: If Service Cost > 10000 , Show message: "High value service assignment".[OnafterGetRecord]
+c. If Status = Completed : Prevent modification and show error,If Status = Completed , Make page non-editable
+field
+d. When user enters Customer No. on page: System should automatically fill: Customer Name from Customer table
+e. When user enters Service Cost: System should calculate automatically: Tax Amount = 18% of Service Cost, Total Amount = Service Cost + Tax Amount
