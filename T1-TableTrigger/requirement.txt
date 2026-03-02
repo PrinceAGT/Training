@@ -1,0 +1,15 @@
+1. Table Name: Service Assignment
+Fields:
+Assignment No. → Code[20] (PK)
+Customer No. → Code[20]
+Customer Name → Text[100]
+Service Cost → Decimal
+Status → Option (Open, Released, Completed)
+Created Date → Date
+Created By → Code[50]
+Modified Date → Date
+Modified By → Code[50]
+a. When user selects or enters Customer No.: System should automatically: Fetch Customer Name from Customer table, Fill Customer Name field automatically, Prevent negative value in Service cost show error, cannot be less than 0.
+b.When new Service Assignment is created: System should automatically fill: Created Date = Today, Created By = UserId, Status = Open
+c.When Customer No changes: System should: Update Customer Name, Update Modified Date
+d. Prevent deletion if: Status = Released or Completed
