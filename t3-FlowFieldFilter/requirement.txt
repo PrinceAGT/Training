@@ -1,0 +1,21 @@
+Table 1: Student (Master table)
+Fields:
+Student No. → Code[20] (Primary Key)
+Student Name → Text[100]
+Total Fees → FlowField (SUM)
+Total Payments → FlowField (COUNT)
+Last Payment Amount → FlowField (Lookup)
+Payment Date Filter → FlowFilter
+
+Table 2: Student Payment 
+Fields:
+Entry No. → Integer (Primary Key)
+Student No. → Code[20] (TableRelation = Student."Student No.")
+Payment Date → Date
+Amount → Decimal
+
+Total Fees should :Automatically calculate total Amount from Student Payment table.Based on matching Student No.
+Total Payments should : It should count number of payment entries for the student.
+Last Payment Amount : It should show latest payment amount.
+
+Create FlowFilter field in Student table: Payment Date Filter, User should be able to filter by date.
