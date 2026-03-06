@@ -1,0 +1,25 @@
+Create Item table (Master table)
+Fields
+Item No	Code[20]-Primary Key
+Item Name-Text[100]	
+Item Type-Option	
+Service Cost-Decimal	
+
+Create Service Assignment table 
+Assignment No-Code[20]-Primary Key
+Item No	-Code[20]	
+Item Name	-Text[100]	
+Service Cost	-Decimal	
+Technician Name	-Text[100]	
+Assignment Date	-Date
+
+Item No must show only Service items.[Table Realtion]
+
+When user selects Item No:
+System must automatically fill:
+Item Name
+Service Cost
+
+Add field:
+Total Assignments → FlowField
+This should count how many times this Item is used in Service Assignment table.

@@ -1,0 +1,12 @@
+Extend Customer Card Page:
+If Blocked = All -> Make these fields non-editable
+a. Name
+b. Credit Limit
+c. Phone No.
+If Blocked <>= All -> Make these fields editable normally.
+
+Create a new group after General  with name - Service Information.
+Move these Existing Standard fields into this group.
+a. Contact
+b. Phone No.
+c. E-Mail

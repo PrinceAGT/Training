@@ -1,0 +1,17 @@
+Create table/Page:
+Service Assignment
+Fields:
+Assignment No. → Code[20] (PK)
+Customer Name → Text[100]
+Service Cost → Decimal
+Status → Option (Open, Released, Completed)
+Created Date → Date
+Modified Date → Date
+
+Create an Action:
+Action Name: Create Assignment Automatically
+When clicked, system should create a new record using: Insert(True)- OnInsert trigger should fill: Created Date = Today
+Now create another Action: Action Name: Create Assignment Without Trigger , Insert record using: Insert(False)
+
+Create Action: Increase Service Cost ,When clicked: Modify Service Cost -> Modify(True) -> OnModify trigger should update: Modified Date = Today, Modify(False) too.
+Same With Delete and Rename.
