@@ -1,0 +1,126 @@
+# 1. Create an action on Customer Card.
+# When user clicks the action:
+# Filter Sales Header using SetRange on:
+# "Sell-to Customer No."
+# Filter "Document Type" to Order
+# Use FindFirst : Show message: like
+#    First Order No: ___
+#    Order Date: ___
+ 
+# 2.Create an action on Item List.
+# Filter Items where:Blocked = FALSE
+# Sort by Unit Price
+# Use FindFirst
+# Show message: Cheapest Item
+#               Item No
+#               Unit Price
+# Convert item description using: UPPERCASE()
+
+# 3. Create an action on Customer List.
+# Filter customers created today
+# Use FindLast
+# Show:Latest Customer Created Today
+#      Customer No
+#      Name
+
+# 4.Create an action on Customer Card.
+#  Filter Customer Ledger Entry:
+#  Customer No = current customer and Document Type = Invoice
+#  Use CalcSums("Sales")
+#  Show message: Total Sales Amount = ___
+
+# 5. Create a custom field on a Customer page extension to store a Customer No.. Use the Get method on the Customer table to fetch that record and display the Name and City. If the record does not exist, show a message.
+
+# 6. Create a custom field on an Item page extension for Base Unit of Measure. Use SetRange on the Item table with that value and then use FindFirst to display the first matching item.
+
+# 7. Create a custom field on a Vendor page extension for Vendor Name text. Use SetFilter on the Vendor table to filter vendor names using that value and display the first matching vendor using FindFirst.
+
+# 8. Use the Sales Header table and write logic using FindLast to display the last available sales document number.
+
+# 1. Create an action on Customer List
+# Requirements:
+# When user clicks the action:
+# Loop through Customer Ledger Entry
+# Filter:
+# Document Type = Invoice
+# Posting Date = Today
+# Calculate sales amount per customer
+# Find the customer with highest sales today
+# Show message:
+# Customer With Highest Sales Today
+# Customer No : ___
+# Customer Name : ___
+# Total Sales : ___
+
+# //open cust -> create action -> cust ledger-> filter doctype invoice and posting date today -> calulate total sales for every customer -> store and compare the highest amount for today -> message highest sale amount , name and no.
+
+# 2. Create an action on Item List
+# Requirements:
+# Filter items where:Blocked = FALSE
+# Use FindSet
+# Loop through items
+# Identify items where:Inventory < 5
+# Count those items
+# Show message:Total Low Inventory Items : ___
+# Also show the lowest inventory item.
+
+
+1. Create an action on Customer Card.
+Filter Sales Header where
+"Sell-to Customer No." = current customer
+"Document Type" = Invoice
+Filter Posting Date = Current Month using SetFilter.
+Use FindSet() and loop through invoices.
+Calculate:
+Total invoices count
+Total amount
+Average invoice amount (use operators)
+Use Round() on the average value.
+Use a procedure to calculate the totals.
+Show message:Customer Invoice Summary
+             Customer No : ___
+             Total Invoices : ___
+             Total Amount : ___
+             Average Invoice Amount : ___
+
+2. Create an action on Customer List.
+Create a temporary table variable of Customer.
+Filter customers where:Balance > 50
+Loop through customers using FindSet().
+Insert those customers into temporary table.
+Count total records in the temporary table.
+Use FindLast() on the temporary table.
+Show message:High Value Customers : ___
+             Last Customer in Temp Table : ___
+             Customer Name : ___
+
+3. Create an action on Item List.
+Filter items where:Blocked = FALSE
+Loop using FindSet().
+For each item:Check inventory using CalcFields(Inventory).
+Identify:
+Item with highest inventory
+Item with lowest inventory
+Use conditional statements.
+Show message:
+Highest Inventory Item : ___
+Inventory : ___
+Lowest Inventory Item : ___
+Inventory : ___
+
+4.Create an action on Sales Order List.
+Filter:Document Type = Order
+Loop using FindSet().
+Compare:
+Posting Date
+and
+WorkDate()
+Identify orders where:Posting Date > WorkDate()
+Count such records.
+Show: 
+Orders with Future Posting Date : ___
+Last Order No : ___
+Use:
+FindLast() to show last order.
+
+
