@@ -1,0 +1,9 @@
+Find Correct Events for these task and perform task.
+1. Automatically Set Customer Credit Limit in Customer table When Customer Is Created means When a new Customer is inserted, the system automatically sets a default Credit Limit.  
+
+2. Automatically Fill Customer City When Page Opens. When the Customer Card opens, if City is empty, it automatically fills a default value.like -> Delhi.
+
+3. Automatically generate a message when Sales Order Posted. 
+   (Sales order Posted) 
+
+4. Trigger a message when any  value is inserted in name field of customer table while creating new customer using events.
