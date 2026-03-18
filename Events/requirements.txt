@@ -7,3 +7,5 @@ Find Correct Events for these task and perform task.
    (Sales order Posted) 
 
 4. Trigger a message when any  value is inserted in name field of customer table while creating new customer using events.
+
+
