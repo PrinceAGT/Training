@@ -1,0 +1,6 @@
+1. Trigger a message when any  value is inserted in name field of customer table while creating new customer using events.
+
+2. Flow custom field value from Sales Header to Customer Ledger Entry using event
+    a. Create a new field in Sales Header (text or code or Boolean)
+    b. Create the same field in Customer Ledger Entry table
+    c. Upon posting the sales order, custom field value should flow to customer ledger entry
