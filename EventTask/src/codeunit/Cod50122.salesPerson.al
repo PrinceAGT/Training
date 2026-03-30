@@ -1,3 +1,7 @@
+
+// 1.There is a field called SalesPerson code on Sales Header, by defauly this comes from Customer card. 
+// 2. When a new sales order is created  Then update the salesperson code on the sales Header with the salesperson code which has the least no of orders+Invoices.
+
 codeunit 50122 Salesperson
 {
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterValidateEvent', 'Sell-to Customer No.', true, true)]
