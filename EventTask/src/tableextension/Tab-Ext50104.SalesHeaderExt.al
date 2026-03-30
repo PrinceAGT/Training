@@ -6,9 +6,5 @@ tableextension 50104 SalesHeaderExt extends "Sales Header"
         {
             Caption = 'My Custom FieldPT';
         }
-        field(50104; "Delivery PT"; code[20])
-        {
-            caption = 'Delivery PT';
-        }
     }
 }

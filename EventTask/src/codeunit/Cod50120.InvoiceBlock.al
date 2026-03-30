@@ -25,6 +25,7 @@
 
 //         if CustLedgerEntry.FindSet() then begin
 //             repeat
+//                 CustLedgerEntry.CalcFields("Remaining Amount");
 //                 OverdueAmount += CustLedgerEntry."Remaining Amount";
 //                 OverdueCount += 1;
 //             until CustLedgerEntry.Next() = 0;
@@ -36,10 +37,12 @@
 
 //             if not IsUserSuper() then begin
 //                 Error(Msg);
-//             end
+//             end else begin
+//                 if not Confirm('Do you want to post the invoice as customer has overdue balance ?', false) then
+//                     Error('Posting cancelled by user.');
+//             end;
 //         end;
 //     end;
-
 
 //     local procedure IsUserSuper(): Boolean
 //     var
