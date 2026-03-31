@@ -40,14 +40,12 @@
 //         ItemJnlLine.SetRange("Journal Batch Name", 'DEFAULT');
 
 //         if ItemJnlLine.FindLast() then
-//             LastLineNo := ItemJnlLine."Line No."
-//         else
-//             LastLineNo := 0;
+//             LastLineNo := ItemJnlLine."Line No.";
 
 //         ItemJnlLine.Init();
 //         ItemJnlLine.Validate("Journal Template Name", 'ITEM');
 //         ItemJnlLine.Validate("Journal Batch Name", 'DEFAULT');
-//         ItemJnlLine."Line No." := LastLineNo + 10000;
+//         ItemJnlLine."Line No." := LastLineNo + 100;
 
 //         ItemJnlLine.Validate("Posting Date", Today);
 //         ItemJnlLine.Validate("Document No.", 'AUTO');

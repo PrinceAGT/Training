@@ -1,59 +1,59 @@
-page 50176 ServiceAssignmentCardPT
-{
-    PageType = Card;
-    ApplicationArea = All;
-    UsageCategory = Administration;
-    SourceTable = ServiceAssignmentPT;
-    
-    
-    layout
-    {
-        area(Content)
-        {
-            group(General)
-            {
-                field("Assignment No.";Rec."Assignment No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("Customer No.";Rec."Customer No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("Customer Name";Rec."Customer Name")
-                {
-                    ApplicationArea = All;
-                }
-                field("Service Cost";Rec."Service Cost")
-                {
-                    ApplicationArea = All;
-                }
-                field(Status;Rec.Status)
-                {
-                    ApplicationArea = All;
-                }
-                
-            }
+// page 50176 ServiceAssignmentCardPT
+// {
+//     PageType = Card;
+//     ApplicationArea = All;
+//     UsageCategory = Administration;
+//     SourceTable = ServiceAssignmentPT;
 
-            group(Administration) 
-            {
-                field("Created By";Rec."Created By")
-                {
-                    ApplicationArea = All;
-                }
-                field("Created Date";Rec."Created Date")
-                {
-                    ApplicationArea = All;
-                }
-                field("Modified By";Rec."Modified By")
-                {
-                    ApplicationArea = All;
-                }
-                field("Modified Date";Rec."Modified Date")
-                {
-                    ApplicationArea = All;
-                }
-            }
-        }
-    }
-}
+
+//     layout
+//     {
+//         area(Content)
+//         {
+//             group(General)
+//             {
+//                 field("Assignment No.";Rec."Assignment No.")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field("Customer No.";Rec."Customer No.")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field("Customer Name";Rec."Customer Name")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field("Service Cost";Rec."Service Cost")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field(Status;Rec.Status)
+//                 {
+//                     ApplicationArea = All;
+//                 }
+
+//             }
+
+//             group(Administration) 
+//             {
+//                 field("Created By";Rec."Created By")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field("Created Date";Rec."Created Date")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field("Modified By";Rec."Modified By")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//                 field("Modified Date";Rec."Modified Date")
+//                 {
+//                     ApplicationArea = All;
+//                 }
+//             }
+//         }
+//     }
+// }
