@@ -4,7 +4,7 @@
 //  increase inventory.
 
 
-// codeunit 50130 addQtyitem
+// codeunit 50124 addQtyitem
 // {
 //     [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', 'Quantity', true, true)]
 //     local procedure OnAfterValidateQuantity(var Rec: Record "Sales Line"; var xRec: Record "Sales Line")

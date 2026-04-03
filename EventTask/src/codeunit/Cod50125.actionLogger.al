@@ -1,8 +1,7 @@
-//  On sales order after clicking on release/reopen then 
+//    On sales order after clicking on release/reopen then 
 // user name, time and action clicked(release/reopen) needs to be logged in a new table.
 
-
-// codeunit 50151 actionLogger
+// codeunit 50125 actionLogger
 // {
 //     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Release Sales Document", 'OnAfterReleaseSalesDoc', '', true, true)]
 //     local procedure OnAfterReleaseSalesDoc(var SalesHeader: Record "Sales Header")
