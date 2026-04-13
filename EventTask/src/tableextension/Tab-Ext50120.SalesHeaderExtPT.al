@@ -1,4 +1,4 @@
-// tableextension 50110 PurchaseHeader extends "Purchase Header"
+// tableextension 50120 SalesHeaderExtPT extends "Sales Header"
 // {
 //     fields
 //     {

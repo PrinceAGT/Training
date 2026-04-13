@@ -1,8 +1,8 @@
-// pageextension 50230 ItemJnlPageExt extends "Item Journal"
+// pageextension 50235 SalesOrderPageExt extends "Sales Order"
 // {
 //     layout
 //     {
-//         addafter("Document No.")
+//         addlast(General)
 //         {
 //             field(MyCustomFieldPT; Rec.MyCustomFieldPT)
 //             {
