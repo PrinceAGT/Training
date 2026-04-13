@@ -9,13 +9,12 @@
 //         salesline: Record "Sales Line";
 //         line: Integer;
 //     begin
-//         if SalesHeader."Document Type" <> SalesHeader."Document Type"::Order then
-//             exit;
 //         purchaseHeader.Init();
 //         purchaseHeader."Document Type" := purchaseHeader."Document Type"::Quote;
+//         purchaseHeader.validate("Buy-from Vendor No.", 'V00090');
 //         purchaseHeader.Insert(true);
-//         purchaseHeader.validate("Buy-from Vendor Name", 'V00050');
 
+//         salesline.Reset();
 //         salesline.SetRange("Document Type", SalesHeader."Document Type");
 //         salesline.SetRange("Document No.", SalesHeader."No.");
 
@@ -29,7 +28,7 @@
 //                     purchaseLine."Line No." := line;
 //                     purchaseLine.Insert(true);
 
-//                     purchaseLine.Validate(Type, purchaseLine.Type);
+//                     purchaseLine.Validate(Type, purchaseLine.Type::Item);
 //                     purchaseLine.validate("No.", salesline."No.");
 //                     purchaseLine.Validate(Quantity, salesline.Quantity);
 

@@ -9,33 +9,35 @@
 //         purchaseHeader: record "Purchase Header";
 //         purchaseLine: record "Purchase Line";
 //         item: record Item;
-//         purchasePost: Codeunit "Purch.-Post";
+//         line: Integer;
 
 //     begin
+//         purchaseHeader.Init();
+//         purchaseHeader."Document Type" := purchaseHeader."Document Type"::Order;
+//         purchaseHeader.validate("Buy-from Vendor No.", 'V00090');
+//         purchaseHeader.Insert(true);
+//         purchaseHeader.validate("Vendor Invoice No.", purchaseHeader."No.");
+//         salesLine.Reset();
 //         salesLine.SetRange("Document Type", SalesHeader."Document Type");
 //         salesLine.SetRange("Document No.", SalesHeader."No.");
 
 //         if salesLine.FindSet() then
-//             repeat
-//                 if item.Get(salesLine."No.") then begin
-//                     if item.Inventory < salesLine.Quantity then begin
-//                         purchaseHeader.Init();
-//                         purchaseHeader.validate("Document Type", purchaseHeader."Document Type"::Order);
-//                         purchaseHeader.validate("Buy-from Vendor No.", item."Vendor No.");
-//                         purchaseHeader.validate("Vendor Invoice No.", purchaseHeader."No.");
-//                         purchaseHeader.Insert(true);
-
-//                         purchaseLine.Init();
-//                         purchaseLine.Validate("Document Type", purchaseHeader."Document Type");
-//                         purchaseLine.Validate("Document No.", purchaseHeader."No.");
-//                         purchaseLine.Validate(Type, purchaseLine.Type::Item);
-//                         purchaseLine.Validate("No.", salesLine."No.");
-//                         purchaseLine.Validate(Quantity, salesLine.Quantity - item.Inventory);
-//                         purchaseLine.Insert(true);
-//                         purchasePost.run(purchaseHeader);
-//                         Message('purchase order has been created succesfully');
-//                     end;
+//             line := 10000;
+//         repeat
+//             if item.Get(salesLine."No.") then begin
+//                 if item.Inventory < salesLine.Quantity then begin
+//                     purchaseLine.Init();
+//                     purchaseLine.Validate("Document Type", purchaseHeader."Document Type");
+//                     purchaseLine.Validate("Document No.", purchaseHeader."No.");
+//                     purchaseLine."Line No." := line;
+//                     purchaseLine.Insert(true);
+//                     purchaseLine.Validate(Type, purchaseLine.Type::Item);
+//                     purchaseLine.Validate("No.", salesLine."No.");
+//                     purchaseLine.Validate(Quantity, salesLine.Quantity - item.Inventory);
+//                     line += 10000;
 //                 end;
-//             until salesLine.next() = 0
+//             end;
+//         until salesLine.next() = 0;
+//         Message('purchase order has been created succesfully');
 //     end;
 // }
