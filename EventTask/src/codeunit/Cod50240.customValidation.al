@@ -2,10 +2,10 @@
 
 // codeunit 50240 customValidation
 // {
-//     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", OnBeforePostSalesDoc, '', true, true)]
-//     local procedure OnBeforePostSalesDoc(var SalesHeader: Record "Sales Header")
+//     [EventSubscriber(ObjectType::Page, Page::"Sales Order", 'OnBeforeActionEvent', 'Release', false, false)]
+//     local procedure CheckMyField(var Rec: Record "Sales Header")
 //     begin
-//         if SalesHeader.MyCustomFieldPT = '' then
+//         if rec.MyCustomFieldPT = '' then
 //             Error('My custom Field PT Must have some value it cannot be 0');
 //     end;
 // }

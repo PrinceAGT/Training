@@ -2,22 +2,33 @@
 
 // codeunit 50239 throwerroeifQTy31
 // {
-//     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterValidateEvent, 'quantity', true, true)]
-//     local procedure OnAfterValidateEvent(var Rec: Record "Sales Line")
+//     [EventSubscriber(ObjectType::Codeunit, codeunit::"Sales-Post", OnbeforePostSalesDoc, '', true, true)]
+//     local procedure OnBeforePostSalesDoc(var SalesHeader: Record "Sales Header")
 //     var
 //         item: Record Item;
 //         availabeQTY: Integer;
+//         salesLine: Record "Sales Line";
 
 //     begin
-//         if rec.Type = rec.type::Item then begin
-//             if item.get(rec."No.") then begin
-//                 item.CalcFields(Inventory);
-//                 availabeQTY := item.Inventory;
+//         if SalesHeader."Document Type" <> SalesHeader."Document Type"::Order then
+//             exit;
+//         salesLine.Reset();
+//         salesLine.SetRange("Document Type", SalesHeader."Document Type");
+//         salesLine.SetRange("Document No.", SalesHeader."No.");
+//         if salesLine.FindSet() then
+//             repeat
+//                 if SalesLine.Type = SalesLine.Type::Item then begin
+//                     if Item.Get(SalesLine."No.") then begin
+//                         Item.CalcFields(Inventory);
+//                         availabeQTY := Item.Inventory;
 
-//                 if rec.Quantity > availabeQTY then begin
-//                     Error('Item quantity is greater than availabe quantity');
+//                         if salesLine.Quantity > availabeQTY then begin
+//                             Error('Posting cannot be done as quantity is greater than available quantity ');
+//                         end;
+//                     end;
 //                 end;
-//             end;
-//         end;
+//             until salesLine.Next() = 0;
+
+
 //     end;
 // }
