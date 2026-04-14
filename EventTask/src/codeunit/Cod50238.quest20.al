@@ -2,41 +2,29 @@
 
 // codeunit 50238 quest20
 // {
-//     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", OnAfterPostSalesLine, '', true, true)]
-//     local procedure OnAfterPostSalesLine(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line")
+//     [EventSubscriber(ObjectType::Table, database::"Sales Invoice Line", OnAfterInsertEvent, '', true, true)]
+//     local procedure OnAfterInsertEventsales(var Rec: Record "Sales Invoice Line")
 //     var
 //         item: Record item;
 //     begin
-//         if SalesHeader."Document Type" = SalesHeader."Document Type"::Order then begin
-//             SalesLine.Reset();
-//             SalesLine.SetRange("Document Type", SalesHeader."Document Type");
-//             SalesLine.SetRange("Document No.", SalesHeader."No.");
-//             if SalesLine.FindSet() then
-//                 repeat
-//                     if item.get(SalesLine."No.") then begin
-//                         item.MyCustField1PT := SalesLine."Unit Price";
-//                         item.Modify();
-//                     end;
-//                 until SalesLine.Next() = 0;
+//         if Rec.Type = Rec.type::Item then begin
+//             if item.Get(Rec."No.") then begin
+//                 item.MyCustField1PT := Rec."Unit Price";
+//                 item.Modify();
+//             end;
 //         end;
 //     end;
 
-//     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", OnAfterPostPurchLine, '', true, true)]
-//     local procedure OnAfterPostPurchLine(var PurchaseHeader: Record "Purchase Header"; var PurchaseLine: Record "Purchase Line")
+//     [EventSubscriber(ObjectType::table, database::"Purch. Inv. Line", OnAfterInsertEvent, '', true, true)]
+//     local procedure OnAfterInsertEvent(var Rec: Record "Purch. Inv. Line")
 //     var
-//         item: Record Item;
+//         item: Record item;
 //     begin
-//         if PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order then begin
-//             PurchaseLine.Reset();
-//             PurchaseLine.SetRange("Document Type", PurchaseHeader."Document Type");
-//             PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
-//             if PurchaseLine.FindSet() then
-//                 repeat
-//                     if item.get(PurchaseLine."No.") then begin
-//                         item.MyCustField2PT := PurchaseLine."Direct Unit Cost";
-//                         item.Modify();
-//                     end;
-//                 until PurchaseLine.Next() = 0;
+//         if Rec.Type = Rec.type::Item then begin
+//             if item.Get(Rec."No.") then begin
+//                 item.MyCustField1PT := Rec."Direct Unit Cost";
+//                 item.Modify();
+//             end;
 //         end;
 //     end;
 // }
