@@ -17,7 +17,7 @@
 //     begin
 
 //         CustLedgerEntry.SetRange("Customer No.", SalesHeader."Sell-to Customer No.");
-//    
+   
 //         CustLedgerEntry.SetFilter("Due Date", '<%1', Today);
 
 //         OverdueAmount := 0;
