@@ -2,6 +2,7 @@ table 50302 "Vendor Evaluation Line PT"
 {
     DataClassification = ToBeClassified;
 
+
     fields
     {
         field(1; "Evaluation No."; Code[20])
@@ -40,6 +41,8 @@ table 50302 "Vendor Evaluation Line PT"
             begin
                 if Weightage <= 0 then
                     Error('Weightage cannot be 0');
+
+                "Weighted Score" := Score * Weightage;
             end;
         }
         field(7; "Weighted Score"; Decimal)
@@ -51,34 +54,10 @@ table 50302 "Vendor Evaluation Line PT"
 
     keys
     {
-        key(Key1; "Evaluation No.")
+        key(Key1; "Evaluation No.", "Line No.")
         {
             Clustered = true;
         }
     }
-
-
-    var
-        myInt: Integer;
-
-    trigger OnInsert()
-    begin
-
-    end;
-
-    trigger OnModify()
-    begin
-
-    end;
-
-    trigger OnDelete()
-    begin
-
-    end;
-
-    trigger OnRename()
-    begin
-
-    end;
 
 }

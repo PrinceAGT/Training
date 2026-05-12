@@ -50,43 +50,40 @@ page 50302 "Vendor evaluation Header DOC"
 
     actions
     {
-        area(Processing)
+        area(processing)
         {
-            action("Calculate Score")
+            action(CalculateScore)
             {
-
+                ApplicationArea = All;
+                Caption = 'Calculate Score';
                 trigger OnAction()
-
                 var
-                    recMgmt: Codeunit "vendor Mgmt";
-                    recHead: Record "Vendor Evaluation Header PT";
-
+                    EvalMgmt: Codeunit "vendorMgmt";
                 begin
-
-
-                    recMgmt.finalScore(Rec);
-                    recMgmt.AssignRating();
-
+                    EvalMgmt.CalculateFinalScore(Rec);
                 end;
             }
-            action("Complete Evaluation")
+
+            action(CompleteEvaluation)
             {
-
+                ApplicationArea = All;
+                Caption = 'Complete Evaluation';
                 trigger OnAction()
-
+                var
+                    EvalMgmt: Codeunit "vendorMgmt";
                 begin
-
-                    rec.Status := Rec.Status::Completed;
-
+                    EvalMgmt.CompleteEvaluation(Rec);
                 end;
             }
-            action("Reopen Evaluation")
+
+            action(ReopenEvaluation)
             {
-
+                ApplicationArea = All;
+                Caption = 'Reopen Evaluation';
                 trigger OnAction()
-
                 begin
-                    rec.Status := rec.Status::Open;
+                    rec.Status := Rec.Status::Open;
+                    rec.Modify(true);
                 end;
             }
         }

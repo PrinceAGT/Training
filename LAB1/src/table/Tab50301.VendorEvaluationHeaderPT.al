@@ -7,7 +7,6 @@ table 50301 "Vendor Evaluation Header PT"
         field(1; "Evaluation No."; Code[20])
         {
             DataClassification = ToBeClassified;
-
         }
         field(2; "Vendor No."; Code[20])
         {

@@ -33,7 +33,7 @@ table 50303 "Evaluation Comment Log PT"
 
     keys
     {
-        key(Key1; "Entry No.", "Evaluation No.")
+        key(Key1; "Entry No.")
         {
             Clustered = true;
         }

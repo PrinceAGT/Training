@@ -1,51 +1,67 @@
-codeunit 50301 "vendor Mgmt"
+codeunit 50301 "vendorMgmt"
 {
-    procedure CalculateWeightedScore(var head: Record "Vendor Evaluation Header PT")
+    procedure CalculateWeightedScore(var Line: Record "Vendor Evaluation Line PT")
+    begin
+        Line."Weighted Score" := Line.Score * Line.Weightage;
+        Line.Modify(true);
+    end;
+
+    procedure CalculateFinalScore(var Header: Record "Vendor Evaluation Header PT")
     var
         Line: Record "Vendor Evaluation Line PT";
-        total: Decimal;
+        Total: Decimal;
     begin
-        Line.SetRange("Evaluation No.", head."Evaluation No.");
+        Total := 0;
+        Line.SetRange("Evaluation No.", Header."Evaluation No.");
         if Line.FindSet() then
-            total := 0;
-        repeat
-            total += Line."Weighted Score";
-        until Line.Next() = 0;
+            repeat
+                Total += Line.Score;
+            until Line.Next() = 0;
+
+        Header."Final Score" := Total;
+        AssignRating(Header);
+        Header.Modify(true);
+
+        OnAfterScoreCalculation(Header);
     end;
 
-    procedure AssignRating()
-    var
-        head: Record "Vendor Evaluation Header PT";
+    procedure AssignRating(var Header: Record "Vendor Evaluation Header PT")
     begin
-        if head."Final Score" >= 80 then
-            head."Rating Status" := head."Rating Status"::Excellent;
-
-        if (head."Final Score" >= 60) and (head."Final Score" <= 79) then
-            head."Rating Status" := head."Rating Status"::Good;
-
-        if (head."Final Score" >= 40) and (head."Final Score" <= 59) then
-            head."Rating Status" := head."Rating Status"::Average;
-
-        if (head."Final Score" < 40) then
-            head."Rating Status" := head."Rating Status"::Poor;
+        if Header."Final Score" >= 90 then
+            Header."Rating Status" := Header."Rating Status"::Excellent
+        else if Header."Final Score" >= 75 then
+            Header."Rating Status" := Header."Rating Status"::Good
+        else if Header."Final Score" >= 50 then
+            Header."Rating Status" := Header."Rating Status"::Average
+        else
+            Header."Rating Status" := Header."Rating Status"::Poor;
     end;
 
-    procedure finalScore(var head: Record "Vendor Evaluation Header PT")
+    procedure CompleteEvaluation(var Header: Record "Vendor Evaluation Header PT")
     var
-        recScore: Record "Vendor Evaluation Line PT";
-        recHead: Record "Vendor Evaluation Header PT";
-        score: Decimal;
+        Line: Record "Vendor Evaluation Line PT";
     begin
-        recScore.Reset();
-        recScore.SetRange("Evaluation No.", head."Evaluation No.");
+        OnBeforeCompleteEvaluation(Header);
 
-        if recScore.FindSet() then
-            score := 0;
-        repeat
-            score += recScore.Score;
-        until recScore.Next() = 0;
-        Head."Final Score" := score;
-        Head.Modify();
+        Line.SetRange("Evaluation No.", Header."Evaluation No.");
+        if not Line.FindFirst() then
+            Error('Cannot complete evaluation without lines.');
 
+        OnAfterEvaluationCompleted(Header);
+    end;
+
+    [IntegrationEvent(false, false)]
+    procedure OnBeforeCompleteEvaluation(var Header: Record "Vendor Evaluation Header PT")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    procedure OnAfterScoreCalculation(var Header: Record "Vendor Evaluation Header PT")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    procedure OnAfterEvaluationCompleted(var Header: Record "Vendor Evaluation Header PT")
+    begin
     end;
 }
