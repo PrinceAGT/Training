@@ -18,7 +18,7 @@ codeunit 50303 "Approval management PT"
             Error('Cannot approve without lines.')
 
 
-        else if header.Status <> header.Status::"Pending Approval" then begin
+        else if header.Status = header.Status::"Pending Approval" then begin
             Header.Status := Header.Status::Approved;
             Header.Modify();
         end;

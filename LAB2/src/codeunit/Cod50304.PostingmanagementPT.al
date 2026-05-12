@@ -3,6 +3,7 @@ codeunit 50304 "Posting management PT"
     procedure postAdjustment(var head: record "Inventory Adjustment PT")
     var
         line: record "Inventory Adjustment Line PT";
+        Approver: Record "User Setup";
     begin
         OnBeforePosting(head);
         line.SetRange("Adjustment No.", head."Adjustment No.");

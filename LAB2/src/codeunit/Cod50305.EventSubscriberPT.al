@@ -15,7 +15,7 @@ codeunit 50305 EventSubscriberPT
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Posting management PT", 'OnAfterPosting', '', false, false)]
-    local procedure LogAfterPosting(var Head: Record "Inventory Adjustment PT")
+    local procedure OnAfterPosting(var Head: Record "Inventory Adjustment PT")
     begin
 
         Message('Adjustment %1 has been successfully posted.', Head."Adjustment No.");
