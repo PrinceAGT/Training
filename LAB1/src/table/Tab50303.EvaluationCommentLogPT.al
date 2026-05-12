@@ -7,6 +7,7 @@ table 50303 "Evaluation Comment Log PT"
         field(1; "Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
+            AutoIncrement = true;
 
         }
         field(2; "Evaluation No."; Code[20])
