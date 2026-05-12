@@ -22,11 +22,26 @@ table 50306 "Inventory Adjustment Line PT"
         }
         field(5; Quantity; Decimal)
         {
-
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if rec.Quantity < 1 then begin
+                    Error('Quantity should be greater than 0');
+                end;
+            end;
         }
         field(6; "Unit Cost"; Decimal)
         {
-
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if rec."Unit Cost" < 0 then begin
+                    Error('Unit cost should be greater than or equal to 0');
+                end;
+                rec."Total Cost" := rec.Quantity * rec."Unit Cost";
+            end;
         }
         field(7; "Total Cost"; Decimal)
         {

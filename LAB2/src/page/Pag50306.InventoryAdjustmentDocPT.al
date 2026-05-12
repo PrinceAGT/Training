@@ -62,7 +62,7 @@ page 50306 "Inventory Adjustment Doc PT"
                     ApprovalManagement: Codeunit "Approval management PT";
                 begin
                     ApprovalManagement.sendForApproval(Rec);
-                    Message('Document sent for approval %1', Rec."Adjustment No.");
+
                 end;
             }
             action("Approve")
@@ -89,6 +89,13 @@ page 50306 "Inventory Adjustment Doc PT"
             }
             action("Post Adjustment")
             {
+                trigger OnAction()
+                var
+                    PostingManagement: Codeunit "Posting management PT";
+                begin
+                    PostingManagement.postAdjustment(Rec);
+                    Message('Document posted %1', Rec."Adjustment No.");
+                end;
             }
         }
     }
