@@ -4,7 +4,7 @@ page 50305 "Inventory Adjustment List PT"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Inventory Adjustment PT";
-
+    CardPageId = "Inventory Adjustment Doc PT";
     layout
     {
         area(content)
