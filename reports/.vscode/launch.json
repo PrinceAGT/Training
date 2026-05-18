@@ -6,7 +6,7 @@
             "request": "launch",
             "type": "al",
             "environmentType": "Sandbox",
-            "environmentName": "training",
+            "environmentName": "Dev",
             "tenant": "527bb1a8-9158-41ca-a990-67c1d3ed38a4",
             "startupObjectId": 22,
             "startupObjectType": "Page",
@@ -14,6 +14,7 @@
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true
+            
         }
     ]
 }

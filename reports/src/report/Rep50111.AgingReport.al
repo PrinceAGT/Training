@@ -38,7 +38,6 @@ report 50111 CustomerAgingReportPT
             trigger OnAfterGetRecord()
             var
                 CustLedgEntry: Record "Cust. Ledger Entry";
-                AgingDays: Integer;
                 DueDate: Date;
             begin
                 Clear(Bucket0);
@@ -48,49 +47,44 @@ report 50111 CustomerAgingReportPT
                 Clear(Bucket120);
                 Clear(Bucket120Plus);
                 Clear(Remaining_Amt___LCY_);
+
                 CustLedgEntry.Reset();
                 CustLedgEntry.SetRange("Customer No.", "No.");
-                //CustLedgEntry.SetRange(Open, true);
+                CustLedgEntry.SetRange(Open, true);
 
                 if CustLedgEntry.FindSet() then
                     repeat
-
                         CustLedgEntry.CalcFields("Remaining Amt. (LCY)");
 
-                        if CustLedgEntry."Due Date" <> 0D then
-                            DueDate := CustLedgEntry."Due Date"
-                        else
-                            DueDate := CustLedgEntry."Document Date" + 30;
+                        if CustLedgEntry."Remaining Amt. (LCY)" <> 0 then begin
 
-                        AgingDays := DaysBetweenDates(DueDate, StartDate);
+                            if CustLedgEntry."Due Date" <> 0D then
+                                DueDate := CustLedgEntry."Due Date"
+                            else
+                                DueDate := CustLedgEntry."Posting Date";
 
-                        if AgingDays <= 0 then
-                            Bucket0 += CustLedgEntry."Remaining Amt. (LCY)"
-                        else if (AgingDays >= 1) and (AgingDays <= PeriodLength) then
-                            Bucket30 += CustLedgEntry."Remaining Amt. (LCY)"
-                        else if (AgingDays >= PeriodLength + 1) and (AgingDays <= PeriodLength * 2) then
-                            Bucket60 += CustLedgEntry."Remaining Amt. (LCY)"
-                        else if (AgingDays >= PeriodLength * 2 + 1) and (AgingDays <= PeriodLength * 3) then
-                            Bucket90 += CustLedgEntry."Remaining Amt. (LCY)"
-                        else if (AgingDays >= PeriodLength * 3 + 1) and (AgingDays <= PeriodLength * 4) then
-                            Bucket120 += CustLedgEntry."Remaining Amt. (LCY)"
-                        else
-                            Bucket120Plus += CustLedgEntry."Remaining Amt. (LCY)";
+                            if DueDate <= StartDate then
+                                Bucket0 += CustLedgEntry."Remaining Amt. (LCY)"
+                            else if DueDate <= StartDate + PeriodLength then
+                                Bucket30 += CustLedgEntry."Remaining Amt. (LCY)"
+                            else if DueDate <= StartDate + (PeriodLength * 2) then
+                                Bucket60 += CustLedgEntry."Remaining Amt. (LCY)"
+                            else if DueDate <= StartDate + (PeriodLength * 3) then
+                                Bucket90 += CustLedgEntry."Remaining Amt. (LCY)"
+                            else if DueDate <= StartDate + (PeriodLength * 4) then
+                                Bucket120 += CustLedgEntry."Remaining Amt. (LCY)"
+                            else
+                                Bucket120Plus += CustLedgEntry."Remaining Amt. (LCY)";
+                        end;
 
                     until CustLedgEntry.Next() = 0;
 
-
                 Remaining_Amt___LCY_ :=
-                    Bucket0 +
-                    Bucket30 +
-                    Bucket60 +
-                    Bucket90 +
-                    Bucket120 +
-                    Bucket120Plus;
+                    Bucket0 + Bucket30 + Bucket60 +
+                    Bucket90 + Bucket120 + Bucket120Plus;
 
                 if Remaining_Amt___LCY_ = 0 then
                     CurrReport.Skip();
-
             end;
         }
     }
@@ -114,7 +108,6 @@ report 50111 CustomerAgingReportPT
     begin
         if StartDate = 0D then
             StartDate := Today;
-
         if PeriodLength <= 0 then
             PeriodLength := 30;
     end;
@@ -126,30 +119,20 @@ report 50111 CustomerAgingReportPT
         Name_LBL: Label 'Name';
         BalanceLBL: Label 'Balance';
         TotalLBL: Label 'Total';
-
         companyNameLBL: Label 'Company Name';
-
         daysLBL: Label '<= 0 Days';
-        days30LBL: Label '<= 0 Days';
-        days60LBL: Label '0 - 30 Days';
-        days90LBL: Label '31 - 60 Days';
-        days120LBL: Label '61 - 90 Days';
+        days30LBL: Label '1 - 30 Days';
+        days60LBL: Label '31 - 60 Days';
+        days90LBL: Label '61 - 90 Days';
+        days120LBL: Label '91 - 120 Days';
         days120PlusLBL: Label '> 120 Days';
-
         StartDate: Date;
         PeriodLength: Integer;
-
         Bucket0: Decimal;
         Bucket30: Decimal;
         Bucket60: Decimal;
         Bucket90: Decimal;
         Bucket120: Decimal;
         Bucket120Plus: Decimal;
-
         Remaining_Amt___LCY_: Decimal;
-
-    local procedure DaysBetweenDates(DueDate: Date; AsOfDate: Date): Integer
-    begin
-        exit(AsOfDate - DueDate);
-    end;
 }
